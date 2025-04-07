@@ -171,3 +171,5 @@ check_packages3() {
 echo " "
 echo "Dallas Ubuntu Ninjago"
 echo " "
+
+check_text_exists "/home/ubuntu/Forensics1.txt" "ShatterSpin" "Forensics 1 correct"
