@@ -172,4 +172,4 @@ echo " "
 echo "Dallas Ubuntu Ninjago"
 echo " "
 
-check_text_exists "/home/ubuntu/Forensics1.txt" "ShatterSpin" "Forensics 1 correct"
+check_text_exists "/home/ubuntu/Desktop/Forensics1.txt" "ShatterSpin" "Forensics 1 correct"
