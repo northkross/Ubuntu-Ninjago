@@ -14,3 +14,24 @@
 </div>
 
 
+
+document.querySelectorAll(".modal-link").forEach(link => {
+  link.onclick = function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute("data-target");
+    document.getElementById(targetId).style.display = "block";
+  };
+});
+
+document.querySelectorAll(".close").forEach(closeBtn => {
+  closeBtn.onclick = function() {
+    this.closest(".modal").style.display = "none";
+  };
+});
+
+window.onclick = function(event) {
+  if (event.target.classList.contains("modal")) {
+    event.target.style.display = "none";
+  }
+};
+
