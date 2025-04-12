@@ -5,3 +5,27 @@
    <a class="nav-link" id="login" href="login.php">Login</a>
 </div>
 
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>This is your popup content!</p>
+  </div>
+</div>
+
+<script>
+document.getElementById("openModal").onclick = function(e) {
+  e.preventDefault(); // Stop link from navigating
+  document.getElementById("myModal").style.display = "block";
+};
+
+document.querySelector(".close").onclick = function() {
+  document.getElementById("myModal").style.display = "none";
+};
+
+window.onclick = function(event) {
+  if (event.target == document.getElementById("myModal")) {
+    document.getElementById("myModal").style.display = "none";
+  }
+};
+</script>
