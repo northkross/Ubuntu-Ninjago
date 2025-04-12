@@ -176,7 +176,9 @@ check_text_exists "/home/ubuntu/Desktop/Forensics1.txt" "ShatterSpin" "Forensics
 
 check_text_exists "/etc/group" "nokt" "Forbidden Five member Nokt removed from system"
 check_text_exists "/etc/group" "rox" "Forbidden Five leader Rox removed from system"
-
-
+check_text_exists "/etc/ufw/ufw.conf" "ENABLED=yes" "ufw firewall enabled"
+check_text_exists "/etc/ufw/ufw.conf" "LOGLEVEL=high" "ufw firewall loglevel high"
+check_text_exists2 "/etc/ufw/user.rules" "-A ufw-user-input -p tcp --dport 443 -j ACCEPT" "-A ufw-user-input -p tcp --dport 80 -j ACCEPT" "ufw allows incoming connections for http and https"
+check_text_exists "/etc/ufw/user.rules" "-A ufw-user-input -p tcp --dport 3306 -j ACCEPT" "ufw allows incoming connections for MySQL"
 
 
