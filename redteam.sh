@@ -1,3 +1,7 @@
+echo "RedTeam plugin for Kinesis"
+echo ""
+echo ""
+
 
 check_text_in_file() {
     local file="$1"
