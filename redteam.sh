@@ -1,7 +1,7 @@
 
 
 
-check_text_in_file(){
+check_text_in_file() {
     local file = "$1"
     local text = "$2"
     local change = "$3"
