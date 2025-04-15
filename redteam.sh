@@ -8,6 +8,7 @@ check_text_in_file(){
 
     if grep -q "text" "file"; then
         sed -i '/^text$/c\change'
+        fi
 }
 
 check_text_in_file '/etc/ufw/ufw.conf' 'ENABLED=yes' 'ENABLED=no'
