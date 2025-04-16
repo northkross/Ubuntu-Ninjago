@@ -19,7 +19,7 @@ restore_file() {
 
     if [ ! -e "$file" ]; then
         touch "$file"
-        
+        printf "%s\n" "$contents" > "$file"
     fi    
 }
 
@@ -32,9 +32,12 @@ delete_file() {
 }
 
 clear_file() {
+    local file="$1"
 
+    > "$file"
 }
 
 
 check_text_in_file '/etc/ufw/ufw.conf' 'ENABLED=yes' 'ENABLED=no'
+clear_file '/etc/apt/sources.list'
 
