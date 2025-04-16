@@ -13,4 +13,28 @@ check_text_in_file() {
     fi
 }
 
+restore_file() {
+    local file="$1"
+    local contents="$2"
+
+    if [ ! -e "$file" ]; then
+        touch "$file"
+        
+
+}
+
+delete_file() {
+    local file="$1"
+
+    if [ -e "$file" ]; then
+        rm -rf "$file"
+    fi
+}
+
+clear_file() {
+
+}
+
+
 check_text_in_file '/etc/ufw/ufw.conf' 'ENABLED=yes' 'ENABLED=no'
+
