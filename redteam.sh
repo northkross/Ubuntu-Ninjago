@@ -20,7 +20,7 @@ restore_file() {
     if [ ! -e "$file" ]; then
         touch "$file"
         
-
+    fi    
 }
 
 delete_file() {
