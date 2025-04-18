@@ -172,7 +172,7 @@ echo " "
 echo "Dallas Ubuntu Ninjago"
 echo " "
 
-check_text_exists "/home/ubuntu/Desktop/Forensics1.txt" "ShatterSpin" "Forensics 1 correct"
+check_text_exists "/home/sora/Desktop/Forensics1.txt" "ShatterSpin" "Forensics 1 correct"
 
 check_text_not_exists "/etc/group" "nokt" "Forbidden Five member Nokt removed from system"
 check_text_not_exists "/etc/group" "rox" "Forbidden Five leader Rox removed from system"
