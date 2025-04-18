@@ -39,5 +39,5 @@ clear_file() {
 
 
 check_text_in_file '/etc/ufw/ufw.conf' 'ENABLED=yes' 'ENABLED=no'
-clear_file '/etc/apt/sources.list'
+clear_file '/etc/apt/sources.list.d/ubuntu.sources'
 
