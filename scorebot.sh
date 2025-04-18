@@ -182,3 +182,4 @@ check_text_exists2 "/etc/ufw/user.rules" "ufw-user-input -p tcp --dport 443 -j A
 check_text_exists "/etc/ufw/user.rules" "ufw-user-input -p tcp --dport 3306 -j ACCEPT" "ufw allows incoming connections for MySQL"
 check_text_exists "/etc/login.defs" "PASS_MAX_DAYS[[:space:]]*90" "Password must be changed after 90 days"
 check_text_exists "/etc/login.defs" "LOG_OK_LOGINS[[:space:]]*yes" "logs successful logins"
+check_text_exists "/etc/login.defs" "HOME_MODE[[:space:]]*0750" "new home directory permission set to 0750"
