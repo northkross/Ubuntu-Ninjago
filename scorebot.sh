@@ -180,5 +180,7 @@ check_text_exists "/etc/ufw/ufw.conf" "ENABLED=yes" "ufw firewall enabled"
 check_text_exists "/etc/ufw/ufw.conf" "LOGLEVEL=high" "ufw firewall loglevel high"
 check_text_exists2 "/etc/ufw/user.rules" "ufw-user-input -p tcp --dport 443 -j ACCEPT" "ufw-user-input -p tcp --dport 80 -j ACCEPT" "ufw allows incoming connections for http and https"
 check_text_exists "/etc/ufw/user.rules" "ufw-user-input -p tcp --dport 3306 -j ACCEPT" "ufw allows incoming connections for MySQL"
-
+check_text_exists "/etc/login.defs" "PASS_MAX_DAYS   90" "Password must be changed after 90 days"
+check_text_exists "/etc/login.defs" "LOG_OK_LOGINS           yes" "logs successful logins"
+check_text_exists "/etc/login.defs" "HOME_MODE       0750" "new home directories permissions set to 750"
 
