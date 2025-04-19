@@ -186,6 +186,7 @@ echo " "
 
 check_text_exists "/home/sora/Desktop/Forensics1.txt" "ShatterSpin" "Forensics 1 correct"
 
+check_file_permissions "/etc/group" "644" "Permissions on group file fixed"
 check_text_not_exists "/etc/group" "nokt" "Forbidden Five member Nokt removed from system"
 check_text_not_exists "/etc/group" "rox" "Forbidden Five leader Rox removed from system"
 check_text_not_exists "/etc/group" "adm:x:4:syslog,sora,wu,rox,garmadon,lloyd" "Forbidden Five leader Rox is not an administrator"
