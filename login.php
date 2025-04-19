@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($pass, $row["password"])) {
             $_SESSION["username"] = $userss;
             $_SESSION["id"] = $row["id"];
-            echo "Login successful! <a href='dashboard.php'>Go to Dashboard</a>>
+            echo "Login successful! <a href='dashboard.php'>Go to Dashboard</a>";
         } else {
             echo "Invalid credentials!";
         }
@@ -34,8 +34,12 @@ $conn->close();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ?>
-<form method="POST">
-    Username: <input type="text" name="username" required><br>
-    Password: <input type="password" name="password" required><br>
-    <button type="submit">Login</button>
+<link type="text/css" rel="stylesheet" href="drip.css" />
+
+<form method="POST" class="login">
+    Username: <input type="text" name="username" class="user"required><br>
+    Password: <input type="password" name="password" class="pass"required><br>
+    <button type="submit" class="LButt">Login</button>
 </form>
+
+
