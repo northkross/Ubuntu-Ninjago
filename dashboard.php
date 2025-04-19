@@ -5,9 +5,13 @@ if (!isset($_SESSION["username"])) {
     exit();
 }
 ?>
-
+<link type="text/css" rel="stylesheet" href="drip.css" />
 <h2>Welcome, <?php echo $_SESSION["username"]; ?>!</h2>
-<form action="delete_account.php" method="post" onsubmit="return confirm('Are y>
+<?php if (!isset($_SESSION["username"]) && $_SESSION["username"]=="kur")?>
+        <a href="CTF" class="KCTF">Kur's CTF Room</a>
+
+
+<form action="delete_account.php" method="post" onsubmit="return confirm('Are you sure you want to delete >
     <input type="submit" name="delete" value="Delete My Account">
 </form>
-<a href="logout.php">Logout</a>
+<a href="logout.php" class="logout">Logout</a>
