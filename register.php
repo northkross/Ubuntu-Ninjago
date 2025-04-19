@@ -23,10 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 $conn->close();
 ?>
+<link type="text/css" rel="stylesheet" href="drip.css" />
 
-<form method="POST">
-    Username: <input type="text" name="username" required><br>
-    Password: <input type="password" name="password" required><br>
-    <button type="submit">Register</button>
+<form method="POST" class="login">
+    Username: <input type="text" name="username" class="user"required><br>
+    Password: <input type="password" name="password" class="pass"required><br>
+    <button type="submit" class="LButt">Register</button>
 </form>
+
+
 
