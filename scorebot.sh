@@ -56,7 +56,19 @@ check_text_not_exists() {
         echo "Unsolved Vuln"
     fi
 }
-
+check_text_not_exists2() {
+    local file="$1"
+    local text="$2"
+    local text2="$3"
+    local vuln_name="$4"
+    local file2="$5"
+    
+    if ! grep -q "$text" "$file" && ! grep -q "$text2" "$file2"; then
+        echo "Vulnerability fixed: '$vuln_name'"
+    else
+        echo "Unsolved Vuln"
+    fi
+}
 # Function to check if a file exists
 check_file_exists() {
     local file="$1"
@@ -176,6 +188,8 @@ check_text_exists "/home/sora/Desktop/Forensics1.txt" "ShatterSpin" "Forensics 1
 
 check_text_not_exists "/etc/group" "nokt" "Forbidden Five member Nokt removed from system"
 check_text_not_exists "/etc/group" "rox" "Forbidden Five leader Rox removed from system"
+check_text_not_exists "/etc/group" "adm:x:4:syslog,sora,wu,rox,garmadon,lloyd" "Forbidden Five leader Rox is not an administrator"
+check_text_not_exists2 "/etc/group" "thunderfang:x:2000:" "thunderfang:x:2000:2000:,,,:/bin/bash" "Hidden user Thunderfang removed from the system" "/etc/passwd"
 check_text_exists "/etc/ufw/ufw.conf" "ENABLED=yes" "ufw firewall enabled"
 check_text_exists "/etc/ufw/ufw.conf" "LOGLEVEL=high" "ufw firewall loglevel high"
 check_text_exists2 "/etc/ufw/user.rules" "ufw-user-input -p tcp --dport 443 -j ACCEPT" "ufw-user-input -p tcp --dport 80 -j ACCEPT" "ufw allows incoming connections for http and https"
