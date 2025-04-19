@@ -1,0 +1,136 @@
+div{
+border-radius: 5px;
+background: transparent;
+color: black;
+display: block;
+margin-left: auto;
+padding-top: 10px;
+padding-bottom: 10px;
+}
+
+.flex-container{
+display: flex;
+justify-content: center;
+}
+
+.card{
+cursor: pointer;
+background: transparent;
+box-shadow: 0 1px 20px 0;
+margin-bottom: 30px;
+position: relative;
+width: 100%;
+height: 600px;
+justify-content: center;
+align-content: space-between;
+display: flex;
+padding: 10px;
+flex-wrap: wrap;
+max-width: 80%;
+margin-left: 15%;
+margin-right: 15%;
+margin-top: 12%;
+}
+.cards{
+background: tan;
+padding: 10%;
+border-radius: 5px;
+justify-content: center;
+position: relative;
+}
+
+.modal{
+display: none;
+background-color: rgba(0,0,0,0.5);
+position: fixed;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+z-index: 999;
+}
+.modal-content{
+background-color: tan;
+margin: 15% auto;
+padding: 20px;
+border-radius: 10px;
+width: 50%;
+}
+
+.close{
+float: right;
+font-size: 1.5rem;
+font-weight: bold;
+cursor: pointer;
+}
+a{
+align-items: center;
+font-weight: bold;
+color: black;
+}
+h1{
+color: tan;
+margin-left: 40%;
+}
+.Back{
+font-size: 1.5rem;
+background-color: tan;
+padding: 10px;
+border-radius: 5px;
+}
+h2{
+font-size: 2rem;
+margin-left: 40%;
+}
+.logout{
+font-size: 1.5rem;
+top: 0;
+}
+.KCTF{
+font-size: 1.5rem;
+background-color: tan;
+padding: 10px;
+border-radius: 5px;
+margin-left: 40%;
+}
+.user{
+align-contents: center;
+font-size: 2rem;
+justify-content: center;
+margin: auto;
+display: block;
+
+}
+.pass{
+align-contents: center;
+font-size: 2rem;
+justify-content: center;
+margin: auto;
+display: block;
+
+}
+.LButt{
+font-size: 2rem;
+align-contents: center;
+justify-content: center;
+margin: auto;
+display: block;
+
+}
+.login{
+margin: auto;
+font-size: 2rem;
+display: block;
+text-align: center;
+margin-top: 15%;
+}
+.register{
+margin: auto;
+font-size: 2rem;
+display: block;
+text-align: center;
+margin-top: 15%;
+}
+
+
