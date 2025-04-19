@@ -1,0 +1,99 @@
+<?php
+session_start();
+if (!isset($_SESSION["username"])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
+<link type="text/css" rel="stylesheet" href="drip.css" />
+<h1>Kur's CTF Room</h1>
+<a href="dashboard.php" class="Back">Back</a>
+<div class="flex-container">
+    <div class="card">
+        <a href="#" class="cards" id="cardLink1" data-target="card1">Challenge 1</a>
+        <div class="C1">
+            <div id="modalCard1" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>This is your popup content for Challenge 1!</p>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="cards" id="cardLink2" data-target="card2">Challenge 2</a>
+        <div class="C2">
+            <div id="modalCard2" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>This is your popup content for Challenge 2!</p>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="cards" id="cardLink3" data-target="card3">Challenge 3</a>
+        <div class="C3">
+            <div id="modalCard3" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>This is your popup content for Challenge 3!</p>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="cards" id="cardLink4" data-target="card4">Challenge 4</a>
+        <div class="C4">
+            <div id="modalCard4" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>This is your popup content for Challenge 4!</p>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="cards" id="cardLink5" data-target="card5">Challenge 5</a>
+        <div class="C5">
+            <div id="modalCard5" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>This is your popup content for Challenge 5!</p>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="cards" id="cardLink6" data-target="card6">Challenge 6</a>
+        <div class="C6">
+            <div id="modalCard6" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>This is your popup content for Challenge 6!</p>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="cards" id="cardLink7" data-target="card7">Challenge 7</a>
+        <div class="C7">
+            <div id="modalCard7" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>This is your popup content for Challenge 7!</p>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="cards" id="cardLink8" data-target="card8">Challenge 8</a>
+        <div class="C8">
+            <div id="modalCard8" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>This is your popup content for Challenge 8!</p>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="cards" id="cardLink9" data-target="card9">Challenge 9</a>
+        <div class="C9">
+            <div id="modalCard9" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>This is your popup content for Challenge 9!</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="junction.js"></script>
