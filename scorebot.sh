@@ -204,6 +204,12 @@ check_text_exists "/etc/rsyslog.conf" 'module(load="imklog" permitnonkernelfacil
 check_text_exists "/etc/host.conf" "nospoof on" "checks for IP spoofing"
 check_text_exists "/etc/logrotate.conf" "weekly" "Rotates logs regularly"
 check_text_not_exists "/etc/logrotate.conf" "rotate 999" "Does not keep many weeks of backlogs"
+check_text_not_exists "/etc/security/pwquality.conf" "minlen = 8" "Minimum password length is 16"
+check_text_not_exists "/etc/security/pwquality.conf" "dictcheck = 0" "Checks for dictionary words"
+check_text_not_exists "/etc/security/pwquality.conf" "enforcing = 0" "Rejects insecure passwords"
+check_text_exists2 "/etc/apt/apt.conf.d/20auto-upgrades" 'APT::Periodic::Update-Package-Lists "1";' 'APT::Periodic::Unattended-Upgrade "1"' "System set to automatically update"
+check_file_permissions "/etc/sudoers" "440" "Permissions on sudoers file fixed"
+
 
 
 
