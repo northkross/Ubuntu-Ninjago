@@ -42,6 +42,7 @@ check_text_exists() {
     local file="$1"
     local text="$2"
     local vuln_name="$3"
+    local points="$4"
     
     if grep -q "$text" "$file"; then
         echo "Vulnerability fixed: '$vuln_name'"
@@ -56,6 +57,7 @@ check_text_exists2() {
     local text="$2"
     local text2="$3"
     local vuln_name="$4"
+    local points="$5"
     
     if grep -q "$text" "$file" && grep -q "$text2" "$file"; then
         echo "Vulnerability fixed: '$vuln_name'"
@@ -71,6 +73,7 @@ check_text_exists3() {
     local text2="$3"
     local text3="$4"
     local vuln_name="$5"
+    local points="$6"
     
     if grep -q "$text" "$file" && grep -q "$text2" "$file" && grep -q "$text3" "$file"; then
         echo "Vulnerability fixed: '$vuln_name'"
@@ -86,6 +89,7 @@ check_text_not_exists() {
     local file="$1"
     local text="$2"
     local vuln_name="$3"
+    local points="$4"
     
     if ! grep -q "$text" "$file"; then
         echo "Vulnerability fixed: '$vuln_name'"
@@ -101,6 +105,7 @@ check_text_not_exists2() {
     local text2="$3"
     local vuln_name="$4"
     local file2="$5"
+    local points="$6"
     
     if ! grep -q "$text" "$file" && ! grep -q "$text2" "$file2"; then
         echo "Vulnerability fixed: '$vuln_name'"
@@ -114,6 +119,7 @@ check_text_not_exists2() {
 check_file_exists() {
     local file="$1"
     local vuln_name="$2"
+    local points="$3"
     
     if [ -e "$file" ]; then
         echo "Vulnerability fixed: '$vuln_name'"
@@ -128,6 +134,7 @@ check_file_exists() {
 check_file_deleted() {
     local file="$1"
     local vuln_name="$2"
+    local points="$3"
     
     if [ ! -e "$file" ]; then
         echo "Vulnerability fixed: '$vuln_name'"
@@ -141,6 +148,7 @@ check_file_deleted2() {
     local file="$1"
     local file2="$2"
     local vuln_name="$3"
+    local points="$4"
     
     if ! -e "$file" && ! -e "$file2"; then
         echo "Vulnerability fixed: '$vuln_name'"
@@ -155,6 +163,7 @@ check_file_deleted3() {
     local file2="$2"
     local file3="$3"
     local vuln_name="$4"
+    local points="$5"
     
     if ! -e "$file" && ! -e "$file2" && ! -e "$file3"; then
         echo "Vulnerability fixed: '$vuln_name'"
@@ -168,6 +177,8 @@ check_file_permissions() {
     local file="$1"
     local expected_permissions="$2"
     local vuln_name="$3"
+    local points="$4"
+    
     
     # Get the actual permissions of the file in numeric form (e.g., 644)
     actual_permissions=$(stat -c "%a" "$file")
@@ -185,6 +196,8 @@ check_file_ownership() { # Thanks Coyne <3
     local file="$1"
     local expected_owner="$2"
     local vuln_name="$3"
+    local points="$4"
+    
      if getfacl "$file" 2>/dev/null | grep -q "owner: $expected_owner"; then
         echo "Vulnerability fixed: '$vuln_name'"
         _append_found "$vuln_name" "$points"
@@ -197,6 +210,7 @@ check_file_ownership() { # Thanks Coyne <3
 check_packages() {
     local package="$1"
     local vuln_name="$2"
+    local points="$3"
     
 
     if ! dpkg --get-selections | grep -q "^$package[[:space:]]*install$"; then
@@ -211,6 +225,7 @@ check_packages2() {
     local package="$1"
     local package2="$2"
     local vuln_name="$3"
+    local points="$4"
     
 
     if ! dpkg --get-selections | grep -q "^$package[[:space:]]*install$" && ! dpkg --get-selections | grep -q "^$package2[[:space:]]*install$"; then
@@ -227,6 +242,7 @@ check_packages3() {
     local package2="$2"
     local package3="$3"
     local vuln_name="$4"
+    local points="$5"
     
 
     if ! dpkg --get-selections | grep -q "^$package[[:space:]]*install$" && ! dpkg --get-selections | grep -q "^$package2[[:space:]]*install$" && ! dpkg --get-selections | grep -q "^$package3[[:space:]]*install$"; then
@@ -240,38 +256,38 @@ check_packages3() {
 
 # keep this line at the beginning, input your image metadata here 
 # accepts two args: image name, and injects bool (true/false)
-_header "Image Name" "false"
+_header "Ubuntu Ninjago" "false"
 
 
 
 # put vuln checks here, for example: 
-check_text_exists "/home/sora/Desktop/Forensics1.txt" "ShatterSpin" "Forensics 1 correct"
+check_text_exists "/home/sora/Desktop/Forensics1.txt" "ShatterSpin" "Forensics 1 correct" "1"
 
-check_file_permissions "/etc/group" "644" "Permissions on group file fixed"
-check_text_not_exists "/etc/group" "nokt" "Forbidden Five member Nokt removed from system"
-check_text_not_exists "/etc/group" "rox" "Forbidden Five leader Rox removed from system"
-check_text_not_exists "/etc/group" "adm:x:4:syslog,sora,wu,rox,garmadon,lloyd" "Forbidden Five leader Rox is not an administrator"
-check_text_not_exists2 "/etc/group" "thunderfang:x:2000:" "thunderfang:x:2000:2000:,,,:/bin/bash" "Hidden user Thunderfang removed from the system" "/etc/passwd"
-check_text_exists "/etc/ufw/ufw.conf" "ENABLED=yes" "ufw firewall enabled"
-check_text_exists "/etc/ufw/ufw.conf" "LOGLEVEL=high" "ufw firewall loglevel high"
-check_text_exists "/etc/default/ufw" "IPV6=yes" "Rules support IPV6"
-check_text_exists2 "/etc/ufw/user.rules" "ufw-user-input -p tcp --dport 443 -j ACCEPT" "ufw-user-input -p tcp --dport 80 -j ACCEPT" "ufw allows incoming connections for http and https"
-check_text_exists "/etc/ufw/user.rules" "ufw-user-input -p tcp --dport 3306 -j ACCEPT" "ufw allows incoming connections for MySQL"
-check_text_exists "/etc/login.defs" "PASS_MAX_DAYS[[:space:]]*90" "Password must be changed after 90 days"
-check_text_exists "/etc/login.defs" "LOG_OK_LOGINS[[:space:]]*yes" "logs successful logins"
-check_text_exists "/etc/login.defs" "HOME_MODE[[:space:]]*0750" "new home directory permission set to 0750"
-check_text_not_exists "/etc/rsyslog.conf" "FileGroup nokt" "nokt is not the file group for logs"
-check_text_exists "/etc/rsyslog.conf" 'module(load="imklog" permitnonkernelfacility="on")' "enabled kernel logging support and non-kernel klog messages"
-check_text_exists "/etc/host.conf" "nospoof on" "checks for IP spoofing"
-check_text_exists "/etc/logrotate.conf" "weekly" "Rotates logs regularly"
-check_text_not_exists "/etc/logrotate.conf" "rotate 999" "Does not keep many weeks of backlogs"
-check_text_not_exists "/etc/security/pwquality.conf" "minlen = 8" "Minimum password length is 16"
-check_text_not_exists "/etc/security/pwquality.conf" "dictcheck = 0" "Checks for dictionary words"
-check_text_not_exists "/etc/security/pwquality.conf" "enforcing = 0" "Rejects insecure passwords"
-check_text_exists2 "/etc/apt/apt.conf.d/20auto-upgrades" 'APT::Periodic::Update-Package-Lists "1";' 'APT::Periodic::Unattended-Upgrade "1"' "System set to automatically update"
-check_file_permissions "/etc/sudoers" "440" "Permissions on sudoers file fixed"
-check_text_not_exists "/etc/sudoers" "NOPASSWD" "insecure sudoers rule extinguished"
-check_file_deleted "/etc/sudoers.d/.FINDME" "Hidden sudoers file removed"
+check_file_permissions "/etc/group" "644" "Permissions on group file fixed" "1"
+check_text_not_exists "/etc/group" "nokt" "Forbidden Five member Nokt removed from system" "1"
+check_text_not_exists "/etc/group" "rox" "Forbidden Five leader Rox removed from system" "1"
+check_text_not_exists "/etc/group" "adm:x:4:syslog,sora,wu,rox,garmadon,lloyd" "Forbidden Five leader Rox is not an administrator" "1"
+check_text_not_exists2 "/etc/group" "thunderfang:x:2000:" "thunderfang:x:2000:2000:,,,:/bin/bash" "Hidden user Thunderfang removed from the system" "/etc/passwd" "1"
+check_text_exists "/etc/ufw/ufw.conf" "ENABLED=yes" "ufw firewall enabled" "1"
+check_text_exists "/etc/ufw/ufw.conf" "LOGLEVEL=high" "ufw firewall loglevel high" "1"
+check_text_exists "/etc/default/ufw" "IPV6=yes" "Rules support IPV6" "1"
+check_text_exists2 "/etc/ufw/user.rules" "ufw-user-input -p tcp --dport 443 -j ACCEPT" "ufw-user-input -p tcp --dport 80 -j ACCEPT" "ufw allows incoming connections for http and https" "1"
+check_text_exists "/etc/ufw/user.rules" "ufw-user-input -p tcp --dport 3306 -j ACCEPT" "ufw allows incoming connections for MySQL" "1"
+check_text_exists "/etc/login.defs" "PASS_MAX_DAYS[[:space:]]*90" "Password must be changed after 90 days" "1"
+check_text_exists "/etc/login.defs" "LOG_OK_LOGINS[[:space:]]*yes" "logs successful logins" "1"
+check_text_exists "/etc/login.defs" "HOME_MODE[[:space:]]*0750" "new home directory permission set to 0750" "1"
+check_text_not_exists "/etc/rsyslog.conf" "FileGroup nokt" "nokt is not the file group for logs" "1"
+check_text_exists "/etc/rsyslog.conf" 'module(load="imklog" permitnonkernelfacility="on")' "enabled kernel logging support and non-kernel klog messages" "1"
+check_text_exists "/etc/host.conf" "nospoof on" "checks for IP spoofing" "1"
+check_text_exists "/etc/logrotate.conf" "weekly" "Rotates logs regularly" "1"
+check_text_not_exists "/etc/logrotate.conf" "rotate 999" "Does not keep many weeks of backlogs" "1"
+check_text_not_exists "/etc/security/pwquality.conf" "minlen = 8" "Minimum password length is 16" "1"
+check_text_not_exists "/etc/security/pwquality.conf" "dictcheck = 0" "Checks for dictionary words" "1"
+check_text_not_exists "/etc/security/pwquality.conf" "enforcing = 0" "Rejects insecure passwords" "1"
+check_text_exists2 "/etc/apt/apt.conf.d/20auto-upgrades" 'APT::Periodic::Update-Package-Lists "1";' 'APT::Periodic::Unattended-Upgrade "1"' "System set to automatically update" "1"
+check_file_permissions "/etc/sudoers" "440" "Permissions on sudoers file fixed" "1"
+check_text_not_exists "/etc/sudoers" "NOPASSWD" "insecure sudoers rule extinguished" "1"
+check_file_deleted "/etc/sudoers.d/.FINDME" "Hidden sudoers file removed" "1"
 
 
 
