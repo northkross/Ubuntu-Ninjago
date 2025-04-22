@@ -212,7 +212,6 @@ check_text_exists2 "/etc/apt/apt.conf.d/20auto-upgrades" 'APT::Periodic::Update-
 check_file_permissions "/etc/sudoers" "440" "Permissions on sudoers file fixed"
 check_text_not_exists "/etc/sudoers" "NOPASSWD" "insecure sudoers rule extinguished"
 check_file_deleted "/etc/sudoers.d/.FINDME" "Hidden sudoers file removed"
-check_text_exists "/etc/grub.d/40_custom" 'set superusers="admin"' "grub sets superusers to admin
 
 
 
