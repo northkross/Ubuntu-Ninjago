@@ -194,6 +194,7 @@ check_text_not_exists "/etc/group" "adm:x:4:syslog,sora,wu,rox,garmadon,lloyd" "
 check_text_not_exists2 "/etc/group" "thunderfang:x:2000:" "thunderfang:x:2000:2000:,,,:/bin/bash" "Hidden user Thunderfang removed from the system" "/etc/passwd"
 check_text_exists "/etc/ufw/ufw.conf" "ENABLED=yes" "ufw firewall enabled"
 check_text_exists "/etc/ufw/ufw.conf" "LOGLEVEL=high" "ufw firewall loglevel high"
+check_text_exists "/etc/default/ufw" "IPV6=yes" "Rules support IPV6"
 check_text_exists2 "/etc/ufw/user.rules" "ufw-user-input -p tcp --dport 443 -j ACCEPT" "ufw-user-input -p tcp --dport 80 -j ACCEPT" "ufw allows incoming connections for http and https"
 check_text_exists "/etc/ufw/user.rules" "ufw-user-input -p tcp --dport 3306 -j ACCEPT" "ufw allows incoming connections for MySQL"
 check_text_exists "/etc/login.defs" "PASS_MAX_DAYS[[:space:]]*90" "Password must be changed after 90 days"
@@ -209,8 +210,9 @@ check_text_not_exists "/etc/security/pwquality.conf" "dictcheck = 0" "Checks for
 check_text_not_exists "/etc/security/pwquality.conf" "enforcing = 0" "Rejects insecure passwords"
 check_text_exists2 "/etc/apt/apt.conf.d/20auto-upgrades" 'APT::Periodic::Update-Package-Lists "1";' 'APT::Periodic::Unattended-Upgrade "1"' "System set to automatically update"
 check_file_permissions "/etc/sudoers" "440" "Permissions on sudoers file fixed"
-
-
+check_text_not_exists "/etc/sudoers" "NOPASSWD" "insecure sudoers rule extinguished"
+check_file_deleted "/etc/sudoers.d/.FINDME" "Hidden sudoers file removed"
+check_text_exists "/etc/grub.d/40_custom" 'set superusers="admin"' "grub sets superusers to admin
 
 
 
