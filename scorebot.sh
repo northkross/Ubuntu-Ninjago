@@ -44,6 +44,7 @@ check_text_exists3() {
         echo "Unsolved Vuln"
     fi
 }
+
 # Function to check if text does not exist in a file
 check_text_not_exists() {
     local file="$1"
@@ -200,3 +201,10 @@ check_text_exists "/etc/login.defs" "LOG_OK_LOGINS[[:space:]]*yes" "logs success
 check_text_exists "/etc/login.defs" "HOME_MODE[[:space:]]*0750" "new home directory permission set to 0750"
 check_text_not_exists "/etc/rsyslog.conf" "FileGroup nokt" "nokt is not the file group for logs"
 check_text_exists "/etc/rsyslog.conf" 'module(load="imklog" permitnonkernelfacility="on")' "enabled kernel logging support and non-kernel klog messages"
+check_text_exists "/etc/host.conf" "nospoof on" "checks for IP spoofing"
+check_text_exists "/etc/logrotate.conf" "weekly" "Rotates logs regularly"
+check_text_not_exists "/etc/logrotate.conf" "rotate 999" "Does not keep many weeks of backlogs"
+
+
+
+
