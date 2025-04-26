@@ -83,6 +83,40 @@ check_text_exists3() {
         _append_unsolved
     fi
 }
+check_text_with_threshold() {
+  local file="$1"
+  local text_prefix="$2"  
+  local threshold="$3"    # The maximum or minimum allowed value
+  local vuln_name="$4"
+  local points="$5"
+  local compare="$6"      # "<" or ">"
+
+  grep -oP "^${text_prefix}(\d+)" "$file" | while IFS= read -r match; do
+    local value="${match#"$text_prefix"}"
+
+    if [[ "$compare" == "<" ]]; then
+      if (( value <= threshold )); then
+        echo "Vulnerability fixed: '$vuln_name'"
+        _append_found "$vuln_name" "$points"
+      else
+        echo "Unsolved Vuln: '$vuln_name'"
+        _append_unsolved
+      fi
+    elif [[ "$compare" == ">" ]]; then
+      if (( value >= threshold )); then
+        echo "Vulnerability fixed: '$vuln_name'"
+        _append_found "$vuln_name" "$points"
+      else
+        echo "Unsolved Vuln: '$vuln_name'"
+        _append_unsolved
+      fi
+    else
+      echo "Invalid comparison operator: '$compare'"
+      return 1
+    fi
+  done
+}
+
 
 # Function to check if text does not exist in a file
 check_text_not_exists() {
@@ -288,6 +322,16 @@ check_text_exists2 "/etc/apt/apt.conf.d/20auto-upgrades" 'APT::Periodic::Update-
 check_file_permissions "/etc/sudoers" "440" "Permissions on sudoers file fixed" "1"
 check_text_not_exists "/etc/sudoers" "NOPASSWD" "insecure sudoers rule extinguished" "1"
 check_file_deleted "/etc/sudoers.d/.FINDME" "Hidden sudoers file removed" "1"
+check_text_with_threshold "/etc/apache2/apache2.conf" "Timeout " "300" "Apache sends and recieves timeout somewhat frequently" "1" "<"
+check_text_exists "/etc/apache2/apache2.conf" "LogLevel warn" "Apache log level set to warn" "1"
+check_text_exists "/etc/apache2/conf-enabled/security.conf" "ServerTokens Prod" "Server HTTP response header returns the least information" "1"
+check_text_exists "/etc/apache2/conf-enabled/security.conf" "ServerSignature Off" "Apache Server Signature Off" "1"
+check_text_exists2 "/etc/apache2/conf-enabled/security.conf" "Header unset ETag" "FileETag None" "ETags Disabled" "1"
+check_text_exists "/etc/apache2/conf-enabled/security.conf" 'Header set Cache-Control "max-age=' "Cache max age set" "1"
+check_text_exists "/etc/apache2/conf-enabled/security.conf" 'Header set X-Content-Type-Options: "nosniff"' "Apache prevents browser from guessing type of file" "1"
+check_file_exists "/etc/apache2/mods-enabled/reqtimeout.load" "reqtimout module enabled" "1"
+check_file_exists "/etc/apache2/mods-enabled/headers.load" "headers module enabled" "1"
+check_file_exists "/etc/apache2/mods-enabled/security2.load" "security2 module enabled" "1"
 
 
 
