@@ -296,7 +296,9 @@ _header "Ubuntu Ninjago" "false"
 
 # put vuln checks here, for example: 
 check_text_exists "/home/sora/Desktop/Forensics1.txt" "ShatterSpin" "Forensics 1 correct" "1"
-
+check_text_exists2 "/home/sora/Desktop/Forensics2.txt" "kur" "D3cay" "Forensics 2: Hijack" "1"
+check_text_exists "/home/sora/Desktop/Forensics2.txt" "RisingDragon" "Forensics 2: Recon" "1"
+check_text_exists "/home/sora/Desktop/Forensics2.txt" "Focus" "Forensics 2: Secret" "1"
 check_file_permissions "/etc/group" "644" "Permissions on group file fixed" "1"
 check_text_not_exists "/etc/group" "nokt" "Forbidden Five member Nokt removed from system" "1"
 check_text_not_exists "/etc/group" "rox" "Forbidden Five leader Rox removed from system" "1"
