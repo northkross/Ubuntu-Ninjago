@@ -99,7 +99,7 @@ check_text_with_threshold() {
         echo "Vulnerability fixed: '$vuln_name'"
         _append_found "$vuln_name" "$points"
       else
-        echo "Unsolved Vuln: '$vuln_name'"
+        echo "Unsolved Vuln"
         _append_unsolved
       fi
     elif [[ "$compare" == ">" ]]; then
@@ -107,7 +107,7 @@ check_text_with_threshold() {
         echo "Vulnerability fixed: '$vuln_name'"
         _append_found "$vuln_name" "$points"
       else
-        echo "Unsolved Vuln: '$vuln_name'"
+        echo "Unsolved Vuln"
         _append_unsolved
       fi
     else
