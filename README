@@ -23,3 +23,40 @@ Wyldfyre
 Arin
 Bonzle
 Morro
+
+# SSL and Security Configuration 
+ssl_ca                      = /etc/mysql/ssl/ca.pem 
+
+ssl_cert                    = /etc/mysql/ssl/server-cert.pem 
+
+ssl_key                     = /etc/mysql/ssl/server-key.pem 
+
+tls_version                 = TLSv1.2 
+
+ssl_cipher                  = DHE-RSA-AES128-GCM-SHA256 
+
+loose-keyring_vault_config  = /var/lib/mysql_keyring/keyring_vault.conf 
+
+# Plugin Loading 
+plugin-load-add             = auth_socket.so 
+
+plugin-load-add             = connection_control.so 
+
+plugin-load-add             = validate_password.so 
+
+early-plugin-load           = keyring_file.so 
+
+# Authentication
+auth_socket                 = FORCE_PLUS_PERMANENT 
+
+audit_log                   = FORCE_PLUS_PERMANENT 
+
+mysql_firewall_mode         = FORCE_PLUS_PERMANENT 
+
+default_password_lifetime   = 90 
+
+password_history            = 5 
+
+password_reuse_interval     = 365 
+
+default_authentication_plugin = mysql_native_password 
