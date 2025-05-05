@@ -24,3 +24,194 @@ Arin
 Bonzle
 Morro
 
+# SSL and Security Configuration 
+
+ssl_ca                      = /etc/mysql/ssl/ca.pem 
+
+ssl_cert                    = /etc/mysql/ssl/server-cert.pem 
+
+ssl_key                     = /etc/mysql/ssl/server-key.pem 
+
+tls_version                 = TLSv1.2 
+
+ssl_cipher                  = DHE-RSA-AES128-GCM-SHA256 
+
+loose-keyring_vault_config  = /var/lib/mysql_keyring/keyring_vault.conf 
+
+  
+
+# Plugin Loading 
+
+plugin-load-add             = auth_socket.so 
+
+plugin-load-add             = connection_control.so 
+
+plugin-load-add             = validate_password.so 
+
+early-plugin-load           = keyring_file.so 
+
+  
+
+# Authentication & Security 
+
+auth_socket                 = FORCE_PLUS_PERMANENT 
+
+audit_log                   = FORCE_PLUS_PERMANENT 
+
+mysql_firewall_mode         = FORCE_PLUS_PERMANENT 
+
+default_password_lifetime   = 90 
+
+password_history            = 5 
+
+password_reuse_interval     = 365 
+
+default_authentication_plugin = mysql_native_password 
+
+  
+
+# Storage & File Management 
+
+default_storage_engine      = InnoDB 
+
+innodb_buffer_pool_size     = 4G 
+
+innodb_file_per_table       = 1 
+
+innodb_flush_log_at_trx_commit = 0 
+
+innodb_flush_method         = O_DIRECT 
+
+innodb_log_buffer_size      = 16M 
+
+innodb_log_file_size        = 1G 
+
+  
+
+# Connection Management 
+
+max_connections             = 90 
+
+thread_cache_size           = 100 
+
+back_log                    = 512 
+
+max_connect_errors          = 10 
+
+interactive_timeout         = 180 
+
+wait_timeout                = 180 
+
+  
+
+# Query Performance and Optimization 
+
+query_cache_size            = 32M 
+
+query_cache_limit           = 1M 
+
+join_buffer_size            = 4M 
+
+read_buffer_size            = 3M 
+
+sort_buffer_size            = 4M 
+
+table_definition_cache      = 50000 
+
+table_open_cache            = 50000 
+
+open_files_limit            = 60000 
+
+  
+
+# Logging and Auditing 
+
+log_error                   = /var/lib/mysql/mysql_error.log 
+
+log_queries_not_using_indexes = 0 
+
+long_query_time             = 5 
+
+slow_query_log              = 0 
+
+slow_query_log_file         = /var/lib/mysql/mysql_slow.log 
+
+  
+
+# Replication and Clustering 
+
+#wsrep_provider              = /usr/lib/libgalera_smm.so 
+
+#wsrep_provider_options      = "gcache.size=300M; gcache.page_size=300M" 
+
+#wsrep_cluster_name          = example_cluster 
+
+#wsrep_cluster_address       = gcomm://IP.node1,IP.node2,IP.node3 
+
+#wsrep_sst_method            = rsync 
+
+  
+
+# MyISAM Tuning 
+
+myisam_sort_buffer_size     = 64M 
+
+key_buffer                  = 16M 
+
+  
+
+[mysql] 
+
+no-auto-rehash 
+
+  
+
+[mysqldump] 
+
+quick 
+
+quote_names 
+
+max_allowed_packet          = 1024M 
+
+  
+
+[client] 
+
+port                        = 3306 
+
+socket                      = /var/run/mysqld/mysqld.sock 
+
+  
+
+[mysqld_safe] 
+
+socket                      = /var/run/mysqld/mysqld.sock 
+
+log-error                   = /var/log/mysqld.log 
+
+pid-file                    = /var/run/mysqld/mysqld.pid 
+
+  
+
+[isamchk] 
+
+key_buffer                  = 64M 
+
+sort_buffer_size            = 64M 
+
+read_buffer                 = 16M 
+
+write_buffer                = 16M 
+
+  
+
+[myisamchk] 
+
+key_buffer                  = 64M 
+
+sort_buffer_size            = 64M 
+
+read_buffer                 = 16M 
+
+write_buffer                = 16M 
