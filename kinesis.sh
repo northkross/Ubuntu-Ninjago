@@ -300,7 +300,7 @@ check_mysql_value_exists() {
     IFS=$'\n' read -ra values <<< "$output"
     for current_value in "${values[@]}"; do
         if [[ "$current_value" == "$value" ]]; then
-            count++
+            count=1
         fi
     done
         if (( count > 1)); then
@@ -325,7 +325,7 @@ check_mysql_value_not_exists() {
     IFS=$'\n' read -ra values <<< "$output"
     for current_value in "${values[@]}"; do
         if [[ "$current_value" == "$value" ]]; then
-            count++
+            count=1
         fi
     done
         if (( count == 0 )); then
@@ -383,7 +383,7 @@ check_text_exists "/etc/apache2/conf-enabled/security.conf" 'Header set X-Conten
 check_file_exists "/etc/apache2/mods-enabled/reqtimeout.load" "reqtimout module enabled" "1"
 check_file_exists "/etc/apache2/mods-enabled/headers.load" "headers module enabled" "1"
 check_file_exists "/etc/apache2/mods-enabled/security2.load" "security2 module enabled" "1"
-check_mysql_value_not_exists "Kur" "username" "user" "users" "Forbidden Five member Kur removed from the MySQL database" "1"
+check_mysql_value_not_exists "kur" "username" "user" "users" "Forbidden Five member Kur removed from the MySQL database" "1"
 check_text_exists "/etc/mysql/mysql.conf.d/mysqld.cnf" "port[[:space:]]*= 3306" "MySQL set to port 3306" "1"
 check_text_exists2 "/etc/mysql/mysql.conf.d/mysqld.cnf" "bind-address[[:space:]]*= 127.0.0.1" "mysqlx-bind-address[[:space:]]*= 127.0.0.1" "MySQL listens only on localhost" "1"
 check_text_exists "/etc/mysql/mysql.conf.d/mysqld.cnf" "auth_socket[[:space:]]*= FORCE_PLUS_PERMANENT" "auth socket on and persists" "1"
