@@ -392,6 +392,13 @@ check_text_exists "/etc/mysql/mysql.conf.d/mysqld.cnf" "auth_socket[[:space:]]*=
 check_text_exists "/etc/mysql/mysql.conf.d/mysqld.cnf" "audit_log[[:space:]]*= FORCE_PLUS_PERMANENT" "audit log on and persists" "1"
 check_text_exists "/etc/mysql/mysql.conf.d/mysqld.cnf" "mysql_firewall_mode[[:space:]]*= FORCE_PLUS_PERMANENT" "mysql firewall mode on and persists" "1"
 check_text_exists2 "/etc/mysql/mysql.conf.d/mysqld.cnf" "password_history[[:space:]]*= 5" "password_reuse_interval[[:space:]]*= 365" "MySQL listens only on localhost" "1"
+check_text_exists "/etc/php/8.3/apache2/php.ini" "engine On" "php scripting language enabled for apache"
+check_text_exists "/etc/php/8.3/apache2/php.ini" "implicit_flush = Off" "php flushes automatically"
+check_text_exists "/etc/php/8.3/apache2/php.ini" "serialize_precision = -1" "data remains the same after doubles and floats are unserialized"
+check_text_exists "/etc/php/8.3/apache2/php.ini" "expose_php = Off" "php is NOT exposed"
+check_text_exists2 "/etc/php/8.3/apache2/php.ini" "log_errors = On" "ignore_repeated_errors = Off" "php logs errors correctly"
+check_text_exists "/etc/php/8.3/apache2/php.ini" "mysqlnd.collect_statistics = Off" "php does not monitor mysql operations"
+check_text_exists "/etc/php/8.3/apache2/php.ini" "smtp_port = 25" "php-smtp mail set to port 25"
 
 
 # keep this line at the end, input the path to score report html here
