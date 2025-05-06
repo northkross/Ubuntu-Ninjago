@@ -23,11 +23,3 @@ Wyldfyre
 Arin
 Bonzle
 Morro
-
-USERNAME="your_username"
-PASSWORD="your_password"
-DATABASE="your_database"
-TABLE="your_table"
-
-output=$(mysql -u "$USERNAME" -p"$PASSWORD" -N -e "SELECT column1, column2 FROM $DATABASE.$TABLE;")
-echo "$output"
