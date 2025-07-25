@@ -357,6 +357,7 @@ check_package_update() {
             echo "Unsolved Vuln"
             _append_unsolved
         fi
+    fi
 }
 
 # keep this line at the beginning, input your image metadata here 
