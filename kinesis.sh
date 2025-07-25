@@ -358,6 +358,7 @@ check_package_update() {
         _append_unsolved
         fi
 }
+
 # keep this line at the beginning, input your image metadata here 
 # accepts two args: image name, and injects bool (true/false)
 _header "Ubuntu Ninjago" "false"
