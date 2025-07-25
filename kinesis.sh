@@ -353,11 +353,10 @@ check_package_update() {
         if [[ "$installed_version" == "$outdated_version" ]]; then
                 echo "Vulnerability fixed: '$vuln_name'"
                 _append_found "$vuln_name" "$points"
-            else
-            echo "Unsolved Vuln"
-            _append_unsolved
-            fi
-
+        else
+        echo "Unsolved Vuln"
+        _append_unsolved
+        fi
 }
 # keep this line at the beginning, input your image metadata here 
 # accepts two args: image name, and injects bool (true/false)
