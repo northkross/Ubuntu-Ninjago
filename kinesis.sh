@@ -351,11 +351,11 @@ check_package_update() {
         installed_version=$(dpkg-query -W -f='${Version}' "$package")
 
         if [[ "$installed_version" == "$outdated_version" ]]; then
-                echo "Vulnerability fixed: '$vuln_name'"
-                _append_found "$vuln_name" "$points"
+            echo "Vulnerability fixed: '$vuln_name'"
+            _append_found "$vuln_name" "$points"
         else
-        echo "Unsolved Vuln"
-        _append_unsolved
+            echo "Unsolved Vuln"
+            _append_unsolved
         fi
 }
 
