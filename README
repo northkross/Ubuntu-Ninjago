@@ -3,7 +3,7 @@ Help! Help! We need your help Sora! As the elemental ninja of technology, you ar
 -------------------------------------------------------------------
 Critical Services: 
 
-[Lampstack](Linux, Apache2, MySQL, PHP)-There is a website running on Apache using PHP and a MySQL database. Secure all of these services and the website.
+[Lampstack](Linux, Apache2, MySQL, PHP)-There is a website running on Apache using PHP and a MySQL database. Secure all of these services and the website. Some mysql options must be on and persist and a previously used password may only be used again after 5 new ones and 1 year has gone by.
 
 
 -------------------------------------------------------------------
