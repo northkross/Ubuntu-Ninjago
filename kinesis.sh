@@ -422,6 +422,11 @@ check_text_exists "/etc/php/8.3/apache2/php.ini" "expose_php = Off" "php is NOT 
 check_text_exists2 "/etc/php/8.3/apache2/php.ini" "log_errors = On" "ignore_repeated_errors = Off" "php logs errors correctly" "1"
 check_text_exists "/etc/php/8.3/apache2/php.ini" "mysqlnd.collect_statistics = Off" "php does not monitor mysql operations" "1"
 check_package_update "git" "git updated" "1"
+check_text_exists "/etc/apt/sources.list" "http://archive.ubuntu.com/ubuntu/ noble main restricted universe multiverse" "sources.list filled" "1"
+check_packages "nmap" "nmap removed" "1"
+check_packages "transmission" "transmission removed" "1"
+check_packages "nginx" "nginx removed" "1"
+check_packages "postfix" "postfix removed" "1"
 
 # keep this line at the end, input the path to score report html here
 # accepts two args: path to template html file, and path to actual html file
