@@ -377,6 +377,7 @@ check_text_not_exists "/etc/group" "rox" "Forbidden Five leader Rox removed from
 check_text_not_exists "/etc/group" "adm:x:4:syslog,sora,wu,rox,garmadon,lloyd" "Forbidden Five leader Rox is not an administrator" "1"
 check_text_not_exists2 "/etc/group" "thunderfang:x:2000:" "thunderfang:x:2000:2000:,,,:/bin/bash" "Hidden user Thunderfang removed from the system" "/etc/passwd" "1"
 check_text_not_exists "/etc/shadow" "LL4xaeP8vJg2eZ0HwYBQ2cMa9Tf/Dpv828p501u5Tw8" "Wu's password changed" "1"
+check_file_deleted "/home/garmadon/password" "cleartext password file removed" "1"
 check_text_exists "/etc/ufw/ufw.conf" "ENABLED=yes" "ufw firewall enabled" "1"
 check_text_exists "/etc/ufw/ufw.conf" "LOGLEVEL=high" "ufw firewall loglevel high" "1"
 check_text_exists "/etc/default/ufw" "IPV6=yes" "Rules support IPV6" "1"
@@ -421,12 +422,16 @@ check_text_exists "/etc/php/8.3/apache2/php.ini" "serialize_precision = -1" "dat
 check_text_exists "/etc/php/8.3/apache2/php.ini" "expose_php = Off" "php is NOT exposed" "1"
 check_text_exists2 "/etc/php/8.3/apache2/php.ini" "log_errors = On" "ignore_repeated_errors = Off" "php logs errors correctly" "1"
 check_text_exists "/etc/php/8.3/apache2/php.ini" "mysqlnd.collect_statistics = Off" "php does not monitor mysql operations" "1"
-check_package_update "git" "git updated" "1"
 check_text_exists "/etc/apt/sources.list" "http://archive.ubuntu.com/ubuntu/ noble main restricted universe multiverse" "sources.list filled" "1"
 check_packages "nmap" "nmap removed" "1"
 check_packages "transmission" "transmission removed" "1"
 check_packages "nginx" "nginx removed" "1"
 check_packages "postfix" "postfix removed" "1"
+check_packages "netcat-openbsd" "netcat removed" "1"
+check_file_deleted "/var/usr/shatter.sh" "netcat backdoor removed"
+check_text_not_exists "/var/spool/cron/crontabs/zarkt" "apt install nmap" "malicious crontab removed"
+check_text_not_exists "/root/.bashrc" "alias cd='reboot'" "annoying alias removed" "1"
+
 
 # keep this line at the end, input the path to score report html here
 # accepts two args: path to template html file, and path to actual html file
